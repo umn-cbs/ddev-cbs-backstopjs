@@ -21,5 +21,5 @@ dependencies:
   - ddev/ddev-backstopjs
 
 removal_actions:
- - echo "Manually remove '${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop', if you no longer need it."
  - ddev addon get ddev/ddev-backstopjs && echo "Returned ddev/ddev-backstopjs to its original configuration. Run 'ddev addon remove ddev/ddev-backstopjs' if you do not plan to use it." || echo "Failed to return ddev-backstop addon to its original configuration. Run 'ddev addon get ddev/ddev-backstopjs' to complete."
+ - echo "Manually remove '${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop', if you no longer need it."
