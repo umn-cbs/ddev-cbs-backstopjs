@@ -4,10 +4,11 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "approot",
         "backstopjs",
         "ddev",
-        "sitename",
-        "approot"
+        "docroot",
+        "sitename"
     ],
     "ignoreWords": [],
     "import": []

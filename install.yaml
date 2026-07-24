@@ -1,9 +1,25 @@
 name: cbs-backstopjs
 
 project_files:
+  - cbsBackstopBuild/
+  - config.cbs-backstopjs.yaml
   - docker-compose.cbs-backstopjs.yaml
+
+post_install_actions:
+ - |
+   #ddev-description:Create the cbs-backstop test directory
+   test -d "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop" || mkdir -p "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop"
+   test -f "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop/.gitignore" || printf "#ddev-generated\n**/bitmaps_test\n**/html_report\ncore\n" > "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop/.gitignore"
+   grep -q "#ddev-generated" "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop/.gitignore" && printf "#ddev-generated\n**/bitmaps_test\n**/html_report\ncore\n" > "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop/.gitignore" || true
+ - |
+   echo "Install finished. Please restart ddev with 'ddev restart'"
+   echo "If backstop configs do not already exist, create your backstop config, e.g. 'ddev backstop init'"
 
 ddev_version_constraint: '>= v1.24.10'
 
 dependencies:
   - ddev/ddev-backstopjs
+
+removal_actions:
+ - rm -rf "${DDEV_APPROOT}/${DDEV_DOCROOT}/sites/default/backstop"
+ - ddev addon get ddev/ddev-backstopjs && echo "Returned ddev/ddev-backstopjs to its original configuration. Run 'ddev addon remote ddev/ddev-backstopjs' if you do not plan to use it." || echo "Failed to return ddev-backstop addon to its original configuration. Run 'ddev addon get ddev/ddev-backstopjs' to complete."
