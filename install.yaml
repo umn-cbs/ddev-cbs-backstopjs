@@ -4,3 +4,6 @@ project_files:
   - docker-compose.cbs-backstopjs.yaml
 
 ddev_version_constraint: '>= v1.24.10'
+
+dependencies:
+  - ddev/ddev-backstopjs
